@@ -24,6 +24,22 @@ The raw dataset is distributed through external storage because it is too large 
 
 The preview images illustrate the visual collection environment. RGB-D, CSI, router geometry, BODY-38 labels, and point cloud pseudo-labels are synchronized in the processed dataset.
 
+### Action examples
+
+| Pick up | Squat | Wave |
+| --- | --- | --- |
+| ![Pick-up action example](assets/action_pick_up_rgb.png) | ![Squat action example](assets/action_squat_rgb.png) | ![Wave action example](assets/action_wave_rgb.png) |
+
+These examples show representative frames from three of the recorded action categories. The complete action-level statistics are provided below and in `dataset_stats/action_stats.csv`.
+
+### Physical-occlusion examples
+
+| Black cloth | Cardboard board | Foam board |
+| --- | --- | --- |
+| ![Black-cloth physical occlusion at 150 cm](assets/occluder_black_cloth_150cm_rgb.png) | ![Cardboard-board physical occlusion at 150 cm](assets/occluder_cardboard_board_150cm_rgb.png) | ![Foam-board physical occlusion at 150 cm](assets/occluder_foam_board_150cm_rgb.png) |
+
+For a controlled visual comparison, all three examples use the same `wave` action and a nominal occluder distance of `150 cm`. The paired dataset also contains corresponding unoccluded tracks and recordings at `100 cm` and `200 cm`.
+
 ## Download
 
 The latest public occlusion-free release is available through Quark Drive:
