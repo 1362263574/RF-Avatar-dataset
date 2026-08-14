@@ -29,7 +29,7 @@ The preview images illustrate the visual collection environment. RGB-D, CSI, rou
 The latest public occlusion-free release is available through Quark Drive:
 
 - **Download:** [RF-Avatar occlusion-free dataset](https://pan.quark.cn/s/ec0b5a6b0257)
-- **Extraction code:** `RUQ4`
+- **Extraction code:** Please contact [whf9231@gmail.com](mailto:whf9231@gmail.com) to request access.
 - **Release note:** data that were previously stored as a separate `new_data_row` collection have been merged into this latest occlusion-free release.
 
 The statistics below describe the complete dataset analyzed in the manuscript, including the paired physical-occlusion subset. If the physical-occlusion files are distributed through a separate link, that download entry should be added to this section.
@@ -198,14 +198,6 @@ python scripts/analyze_dataset_stats.py \
 
 Statistics are derived from the current filesystem organization because no project-specific `RFAvatarDataset` loader was present during the latest scan. Use session-level train/validation/test splits to avoid temporal leakage between consecutive frames from the same recording.
 
-## Citation
+## Contact
 
-If you use this dataset, please cite the RF-Avatar manuscript:
-
-> Hongfei Wang, Yixuan Xu, Bo Cai, Zhuang Zhou, Ran Tao, and Haijun Xie, "RF-Avatar: WiFi CSI and RGB-D Fusion for Multi-Person 3D Skeleton and Point Cloud Reconstruction."
-
-The final BibTeX entry and publication identifier will be added after publication.
-
-## License and Contact
-
-Dataset access and reuse terms should be checked before redistribution. A formal dataset license and maintainer contact should be added to this repository before the public release is announced.
+To request the dataset extraction code or ask questions about the dataset, contact [whf9231@gmail.com](mailto:whf9231@gmail.com).
