@@ -1,0 +1,188 @@
+% RF-Avatar paper-ready dataset tables
+% Generated from dataset_stats/
+
+% Dataset paragraph
+We collect a synchronized RGB-D and WiFi CSI dataset from 12 subjects performing 30 action categories across 3 indoor scenes and 9 recorded router deployment configurations. Among these router configurations, 5 contain valid human samples and 1 is used for background/no-person calibration. The remaining 3 configurations currently contribute recorded sessions without retained multimodal human samples under the present filtering rules. The WiFi receiver is co-located with the ZED-X camera optical center and is therefore defined as the origin of the camera coordinate system, while the transmitter position is represented by a manually measured 3D offset relative to this receiver/camera origin. The dataset contains 11331 valid RGB-D frames, 8009 valid CSI samples, 6987 skeleton-valid frames, and 9160 human instances, with up to 3 people appearing in one frame. After depth-based pseudo-label generation and quality control, 3838 reliable human-centric point cloud pseudo-labels are retained for point cloud supervision. In addition, we construct a paired physical-occlusion subset containing 1980 valid occluded--unoccluded paired samples with three occluder materials and three occluder distances.
+
+% Synthetic visual occlusion augmentation
+Synthetic visual occlusion is not an independently collected dataset. During training, we apply online random CutOut to RGB and depth observations with probability 0.6. The mask area is randomly sampled from 15% to 50% of the image area, and the aspect ratio is sampled from 0.3 to 3.3. The masked values are set to 0.0. The CSI stream is kept unchanged, since this augmentation only simulates visual missingness and does not model RF propagation changes caused by real physical occluders. For the synthetic occlusion stress test, we mask the lower 50% of RGB-D observations while keeping the original CSI unchanged. The synthetic mask only simulates visual missingness and does not simulate RF propagation shifts.
+
+\begin{table}[t]
+\caption{RF-Avatar dataset summary used in the experimental setup.}
+\label{tab:dataset_summary}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lr}
+\hline
+Item & Value \\
+\hline
+Subjects & 12 \\
+Action categories & 30 \\
+Indoor scenes & 3 \\
+Recorded router deployment configurations & 9 \\
+Human reconstruction router configurations & 5 \\
+Background/no-person router configurations & 1 \\
+Additional recorded configurations without retained multimodal human samples & 3 \\
+Recording sessions & 924 \\
+Valid RGB-D frames & 11331 \\
+Valid CSI samples & 8009 \\
+Skeleton-valid frames & 6987 \\
+Point-cloud-supervised samples & 3838 \\
+Human instances & 9160 \\
+Maximum people per frame & 3 \\
+Physical-occlusion paired samples & 1980 \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\caption{Distribution of valid samples by the effective number of people. The multi-person distribution is computed over skeleton-valid frames, and the number of people per frame is determined by valid BODY-38 skeleton instances rather than directory-level subject tokens.}
+\label{tab:multi_person_distribution}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrr}
+\hline
+Number of people & Frames & Human instances \\
+\hline
+1-person & 5238 & 5238 \\
+2-person & 1325 & 2650 \\
+3-person & 424 & 1272 \\
+Total & 6987 & 9160 \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table*}[t]
+\caption{Scene and router-position distribution. For all router configurations, the WiFi receiver is aligned with the ZED-X camera optical center and is treated as the camera coordinate origin. The transmitter position is represented by a manually measured offset relative to this receiver/camera origin. One recorded router configuration appears only in background/no-person sessions and is not counted as a human reconstruction configuration. In addition, 3 recorded configurations contain recorded sessions but no retained multimodal human samples under the current filtering rules.}
+\label{tab:router_distribution}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllrrl}
+\hline
+Scene & Router position & Config ID & Sessions & Valid frames & Human instances & Type \\
+\hline
+Lab & Pos0 & RC1 & 163 & 1895 & 2744 & Human \\
+Lab & Pos0\_Unseen & RC2 & 107 & 0 & 0 & No retained human samples \\
+Lab & Pos1\_R20 & RC3 & 82 & 926 & 1480 & Human \\
+Lab & Pos1\_R20\_Unseen & RC4 & 79 & 0 & 0 & No retained human samples \\
+NewLab & Pos2 & RC5 & 243 & 1980 & 1980 & Human \\
+NewLab & Pos2 & RC6 & 1 & 0 & 0 & Background \\
+Room & Pos0 & RC7 & 138 & 1527 & 2112 & Human \\
+Room & Pos0\_Unseen & RC8 & 48 & 0 & 0 & No retained human samples \\
+Room & Pos1\_L20 & RC9 & 63 & 659 & 844 & Human \\
+\hline
+\end{tabular}%
+}
+\end{table*}
+
+\begin{table}[t]
+\caption{Paired physical-occlusion subset organized by occluder material and distance. Valid paired frames denote occluded--unoccluded pairs retained after quality control.}
+\label{tab:physical_occlusion_dataset}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\hline
+Occluder & Distance & Sessions & Raw paired frames & Valid paired frames & Discarded frames \\
+\hline
+Black cloth & 100 cm & 28 & 401 & 255 & 146 \\
+Black cloth & 150 cm & 27 & 377 & 160 & 217 \\
+Black cloth & 200 cm & 27 & 380 & 123 & 257 \\
+Cardboard board & 100 cm & 27 & 365 & 197 & 168 \\
+Cardboard board & 150 cm & 27 & 362 & 130 & 232 \\
+Cardboard board & 200 cm & 27 & 363 & 181 & 182 \\
+Foam board & 100 cm & 27 & 364 & 348 & 16 \\
+Foam board & 150 cm & 27 & 370 & 326 & 44 \\
+Foam board & 200 cm & 27 & 362 & 260 & 102 \\
+Total & - & 244 & 3344 & 1980 & 1364 \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table*}[t]
+\caption{Evaluation protocols used in RF-Avatar experiments. Synthetic visual occlusion is not an independently collected dataset; it is generated online or during stress testing from clean RGB-D samples, while CSI remains unchanged.}
+\label{tab:evaluation_protocols}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{p{3.1cm}p{4.0cm}p{4.0cm}p{5.0cm}}
+\hline
+Protocol & Training data & Testing data & Purpose \\
+\hline
+Standard reconstruction & Occlusion-free multimodal data & Clean test sessions & Evaluate basic multi-person 3D skeleton and point cloud reconstruction \\
+Multi-person reconstruction & 1--3 person data & Test sessions grouped by the number of people & Evaluate multi-person instance decoupling \\
+Synthetic visual occlusion & Online CutOut-augmented RGB-D with unchanged CSI & Masked RGB-D generated from clean test sessions & Test robustness to visual missingness \\
+Physical occlusion & Paired occluded/unoccluded recordings & Real physical-occlusion sessions & Evaluate robustness to real occluders and RF propagation shifts \\
+Cross-router-position generalization & Selected router configurations & Held-out or moved router configurations & Evaluate deployment generalization with router coordinates \\
+\hline
+\end{tabular}%
+}
+\end{table*}
+
+\begin{table}[t]
+\caption{Draft session-level train/validation/test split statistics derived from existing summary files. These totals are inconsistent with the dataset-level human-instance statistics and should not be used in the main paper until recomputed.}
+\label{tab:split_stats}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrrr}
+\hline
+Split & Sessions & RGB-D frames & Skeleton-valid frames & Human instances & Physical-occlusion pairs \\
+\hline
+Train & 412 & 5630 & Not recomputed & 8091 & 1403 \\
+Val & 88 & 1184 & Not recomputed & 1705 & 299 \\
+Test & 91 & 1158 & Not recomputed & 1714 & 278 \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\caption{Appendix Table A: subject-level data distribution. In multi-person sessions, a recording session may be attributed to multiple participating subjects; therefore, subject-level totals are not expected to sum to the dataset-level frame count. Raw action categories are parsed from directory or metadata names and may include occlusion-related suffixes.}
+\label{tab:subject_action_appendix}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lrrrr}
+\hline
+Subject & Action categories & Sessions & Valid frames & Human instances \\
+\hline
+K1 & 28 & 166 & 1964 & 1964 \\
+K2 & 23 & 91 & 970 & 970 \\
+K3 & 28 & 268 & 3098 & 3098 \\
+K4 & 28 & 153 & 1829 & 1829 \\
+K5 & 19 & 66 & 766 & 766 \\
+K6 & 19 & 47 & 533 & 533 \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\begin{table}[t]
+\caption{Appendix Table B: quality-control statistics derived from the current dataset scan. These statistics are kept for appendix or internal reporting because several fields such as ghost skeleton removal and NaN/Inf checks are unavailable or not checked.}
+\label{tab:quality_control_appendix}
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{lr}
+\hline
+Item & Count / Status \\
+\hline
+Raw samples & 11331 \\
+Valid RGB-D frames & 11331 \\
+Valid CSI samples & 8009 \\
+Skeleton-valid frames & 6987 \\
+Valid point cloud pseudo-labels & 3838 \\
+Human instances & 9160 \\
+Missing RGB-D & 0 \\
+Invalid depth & 0 \\
+Invalid CSI & 3322 \\
+Missing skeleton & 0 \\
+Incomplete skeleton & 6699 \\
+Ghost skeleton removed & unknown \\
+Invalid point cloud & 0 \\
+Shape error & 0 \\
+NaN / Inf samples & Not checked \\
+Final retained samples & 8009 \\
+\hline
+\end{tabular}%
+}
+\end{table}

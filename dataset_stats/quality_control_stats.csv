@@ -1,0 +1,12 @@
+﻿metric,value,notes
+total raw samples,11331,Regular raw frame candidates plus inspected paired samples from perfect_train_list.json.
+valid samples after filtering,8009,"Samples with valid RGB-D, CSI, and skeleton; physical pairs additionally require point cloud pseudo-labels."
+missing RGB-D,0,
+invalid depth,0,Counts missing/unloadable depth files only; NaN depth values are not automatically treated as invalid.
+invalid CSI,3322,Counts missing/unloadable CSI or missing amplitude/phase keys.
+missing skeleton,0,
+incomplete skeleton,6699,Frame-level count where BODY-38 keypoints were incomplete or contained non-finite values.
+ghost skeleton removed,unknown,Cannot be recovered reliably from post-filtered files alone.
+invalid point cloud,0,
+NaN / Inf samples,unknown,Unknown unless --check-finite-arrays is enabled; depth NaNs often represent valid missing-depth pixels.
+shape error samples,0,Counts malformed array shapes among inspected depth / point cloud files.

@@ -1,0 +1,10 @@
+﻿raw_action,suggested_canonical_action,occlusion_modifier,confidence,note
+newlab_nothing,nothing,,medium,Background-only physical-occlusion calibration clip.
+occlusion_full,occlusion,full,medium,Base action is ambiguous from the raw name alone.
+occlusion_lower,occlusion,lower,medium,Base action is ambiguous from the raw name alone.
+occlusion_upper,occlusion,upper,medium,Base action is ambiguous from the raw name alone.
+sit_occlusion_full,sit,full,high,
+sit_occlusion_lower,sit,lower,high,
+stand_occlusion_full,stand,full,high,
+stand_occlusion_lower,stand,lower,high,
+stand_occlusion_upper,stand,upper,high,

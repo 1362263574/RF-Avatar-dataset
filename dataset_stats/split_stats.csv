@@ -1,0 +1,5 @@
+﻿split,sessions,frames,human_instances,source,notes
+train,412,5630,8091,suggested_session_level,Suggested because no complete train/val/test list was found for the full dataset.
+val,88,1184,1705,suggested_session_level,Suggested because no complete train/val/test list was found for the full dataset.
+test,91,1158,1714,suggested_session_level,Suggested because no complete train/val/test list was found for the full dataset.
+physical_train_existing,149,1980,1980,perfect_train_list.json,Existing paired physical-occlusion training list; no separate val/test list was found.

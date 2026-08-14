@@ -1,0 +1,10 @@
+﻿occluder_type,distance_cm,sessions,raw_paired_frames,valid_paired_frames,discarded_frames
+black cloth,100,28,401,255,146
+black cloth,150,27,377,160,217
+black cloth,200,27,380,123,257
+cardboard board,100,27,365,197,168
+cardboard board,150,27,362,130,232
+cardboard board,200,27,363,181,182
+foam board,100,27,364,348,16
+foam board,150,27,370,326,44
+foam board,200,27,362,260,102
